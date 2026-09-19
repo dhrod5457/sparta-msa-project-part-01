@@ -53,6 +53,14 @@ class ProductTest {
   }
 
   @Test
+  @DisplayName("상품 가격은 null일 수 없다")
+  void createProductWithNullPrice() {
+    assertThatThrownBy(() -> Product.create("상품", null, null))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage("상품 가격은 필수입니다.");
+  }
+
+  @Test
   @DisplayName("상품 가격은 음수일 수 없다")
   void createProductWithNegativePrice() {
     assertThatThrownBy(() -> Product.create("상품", -1L, null))
